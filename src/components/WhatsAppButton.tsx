@@ -9,7 +9,7 @@ interface WhatsAppButtonProps {
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ 
   phoneNumber, 
-  message = "Hello! I'm interested in learning more about Scentwave Studio." 
+  message = "Hello! I'm interested in learning more about Scentwave Organization." 
 }) => {
   const handleClick = () => {
     const encodedMessage = encodeURIComponent(message);
