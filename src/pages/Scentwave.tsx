@@ -1,9 +1,34 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { Award, Newspaper, Briefcase, ChevronRight, Phone, Shield, User } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, useAnimationControls } from 'motion/react';
+import { Award, Newspaper, Briefcase, ChevronRight, Phone, Shield, User, X, ZoomIn } from 'lucide-react';
 import { MEDIA_COVERAGE, AWARDS, PROJECTS, SITE_CONTENT } from '../constants';
 
 const Scentwave = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const mediaControls = useAnimationControls();
+  const awardsControls = useAnimationControls();
+
+  useEffect(() => {
+    mediaControls.start({
+      x: [-1440, 0], // 5 items * (256px + 32px gap) = 1440px
+      transition: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 20, // Adjusted duration for shorter distance
+        ease: "linear",
+      },
+    });
+    awardsControls.start({
+      x: [0, -1728], // 6 items * (256px + 32px gap) = 1728px
+      transition: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 24, // Adjusted duration for shorter distance
+        ease: "linear",
+      },
+    });
+  }, [mediaControls, awardsControls]);
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -214,27 +239,48 @@ const Scentwave = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-10">
-            {MEDIA_COVERAGE.map((item) => (
-              <article key={item.id} className="group bg-white/5 rounded-[2.5rem] overflow-hidden border border-white/10 hover:shadow-2xl hover:shadow-brand-dark/10 transition-all duration-500 w-full md:w-[calc(50%-1.25rem)] lg:w-[calc(33.333%-1.67rem)] max-w-md">
-                <div className="bg-white/5 overflow-hidden relative flex items-center justify-center">
-                  <img 
-                    src={item.imageUrl || `https://picsum.photos/seed/${item.id}/600/400`} 
-                    alt="Media Coverage"
-                    className="w-auto max-w-full h-auto block transition-transform duration-700 opacity-80 group-hover:opacity-100 mx-auto"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                {item.description && (
-                  <div className="p-10">
-                    <div 
-                      className="text-white/70 leading-relaxed rich-text-content"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
+          <div className="relative overflow-hidden">
+            {/* Gradient Overlays for smooth fade effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-brand-primary to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-brand-primary to-transparent z-10"></div>
+
+            <motion.div 
+              className="flex gap-8 items-center cursor-pointer"
+              animate={mediaControls}
+              onMouseEnter={() => mediaControls.stop()}
+              onMouseLeave={() => {
+                mediaControls.start({
+                  x: [-1440, 0],
+                  transition: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 20,
+                    ease: "linear",
+                  },
+                });
+              }}
+              style={{ width: "fit-content" }}
+            >
+              {[...MEDIA_COVERAGE, ...MEDIA_COVERAGE].map((item, index) => (
+                <div 
+                  key={`${item.id}-${index}`}
+                  onClick={() => setSelectedImage(item.imageUrl || `https://picsum.photos/seed/${item.id}/800/600`)}
+                  className="flex-shrink-0 w-64 h-80 group bg-white/5 rounded-[2.5rem] overflow-hidden border border-white/10 hover:shadow-2xl hover:shadow-brand-dark/10 transition-all duration-500 relative"
+                >
+                  <div className="absolute inset-0 bg-brand-secondary/0 group-hover:bg-brand-secondary/20 transition-colors duration-500 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <ZoomIn className="text-white" size={32} />
+                  </div>
+                  <div className="h-full w-full bg-white/5 overflow-hidden relative flex items-center justify-center p-4">
+                    <img 
+                      src={item.imageUrl || `https://picsum.photos/seed/${item.id}/600/400`} 
+                      alt="Media Coverage"
+                      className="w-full h-full object-contain transition-transform duration-700 opacity-80 group-hover:opacity-100 group-hover:scale-110"
+                      referrerPolicy="no-referrer"
                     />
                   </div>
-                )}
-              </article>
-            ))}
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
@@ -250,29 +296,82 @@ const Scentwave = () => {
             <h2 className="text-5xl font-extrabold tracking-tight text-white">Celebrating Excellence</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {AWARDS.map((award, index) => (
-              <motion.div 
-                key={award.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group bg-white/5 rounded-[2.5rem] overflow-hidden border border-white/10 hover:shadow-2xl hover:shadow-brand-dark/10 transition-all duration-500"
-              >
-                <div className="bg-white/5 overflow-hidden relative flex items-center justify-center">
-                  <img 
-                    src={award.imageUrl || `https://picsum.photos/seed/award-${award.id}/800/600`} 
-                    alt={award.title}
-                    className="w-auto max-w-full h-auto block transition-transform duration-700 opacity-80 group-hover:opacity-100 mx-auto"
-                    referrerPolicy="no-referrer"
-                  />
+          <div className="relative overflow-hidden">
+            {/* Gradient Overlays for smooth fade effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-brand-primary/80 to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-brand-primary/80 to-transparent z-10"></div>
+
+            <motion.div 
+              className="flex gap-8 items-center cursor-pointer"
+              animate={awardsControls}
+              onMouseEnter={() => awardsControls.stop()}
+              onMouseLeave={() => {
+                awardsControls.start({
+                  x: [0, -1728],
+                  transition: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 24,
+                    ease: "linear",
+                  },
+                });
+              }}
+              style={{ width: "fit-content" }}
+            >
+              {[...AWARDS, ...AWARDS].map((award, index) => (
+                <div 
+                  key={`${award.id}-${index}`}
+                  onClick={() => setSelectedImage(award.imageUrl || `https://picsum.photos/seed/award-${award.id}/800/600`)}
+                  className="flex-shrink-0 w-64 h-80 group bg-white/5 rounded-[2.5rem] overflow-hidden border border-white/10 hover:shadow-2xl hover:shadow-brand-dark/10 transition-all duration-500 relative"
+                >
+                  <div className="absolute inset-0 bg-brand-secondary/0 group-hover:bg-brand-secondary/20 transition-colors duration-500 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <ZoomIn className="text-white" size={32} />
+                  </div>
+                  <div className="h-full w-full bg-white/5 overflow-hidden relative flex items-center justify-center p-4">
+                    <img 
+                      src={award.imageUrl || `https://picsum.photos/seed/award-${award.id}/800/600`} 
+                      alt={award.title}
+                      className="w-full h-full object-contain transition-transform duration-700 opacity-80 group-hover:opacity-100 group-hover:scale-110"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Image Zoom Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setSelectedImage(null)}
+            className="absolute inset-0 bg-brand-dark/95 backdrop-blur-xl cursor-zoom-out"
+          ></motion.div>
+          
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="relative max-w-5xl max-h-[90vh] w-full flex items-center justify-center"
+          >
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 p-2 text-white/50 hover:text-white transition-colors"
+            >
+              <X size={32} />
+            </button>
+            <img 
+              src={selectedImage} 
+              alt="Zoomed view" 
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
+        </div>
+      )}
 
       {/* Contact Section */}
       <section id="contact" className="pt-[2px] pb-[14px] bg-brand-primary/80 relative overflow-hidden">

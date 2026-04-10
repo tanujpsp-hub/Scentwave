@@ -6,14 +6,6 @@ import { VENDORS as DEFAULT_VENDORS, EVENTS as DEFAULT_EVENTS, SITE_CONTENT } fr
 
 const SEGMENTS: { id: SegmentType; name: string; icon: any; color: string; description: string; image: string }[] = [
   { 
-    id: 'waste_management', 
-    name: 'Waste Management', 
-    icon: Briefcase, 
-    color: 'blue',
-    description: 'Sustainable solutions for waste reduction and recycling.',
-    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=800'
-  },
-  { 
     id: 'health_management', 
     name: 'Health Management', 
     icon: User, 
@@ -36,6 +28,14 @@ const SEGMENTS: { id: SegmentType; name: string; icon: any; color: string; descr
     color: 'purple',
     description: 'Empowering individuals through education and training.',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=800'
+  },
+  { 
+    id: 'waste_management', 
+    name: 'Waste Management', 
+    icon: Briefcase, 
+    color: 'blue',
+    description: 'Sustainable solutions for waste reduction and recycling.',
+    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=800'
   },
 ];
 

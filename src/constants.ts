@@ -40,12 +40,27 @@ export const SITE_CONTENT: SiteContent = {
 export const MEDIA_COVERAGE: MediaCoverage[] = [
   {
     id: '1',
-    imageUrl: "https://lh3.googleusercontent.com/d/13YzknoTCSJFfLKslaXS9hsmVatRCzhWM",
-    description: ""
+    imageUrl: "https://lh3.googleusercontent.com/d/1qWOosA3K33MPnIoX45_XL9xZxm7b_2gl",
+    description: "Business Remedies: Passion, Purpose, and Persistence - The Inspiring Journey of Shiwali Gupta"
   },
   {
     id: '2',
-    imageUrl: "https://lh3.googleusercontent.com/d/1jOtGExyOi2K7GBn9bsHq8AhaXFHBr5yz",
+    imageUrl: "https://lh3.googleusercontent.com/d/1VdDAv0vzEK3WTnHbpdnZ1x-U569IMiRx",
+    description: ""
+  },
+  {
+    id: '3',
+    imageUrl: "https://lh3.googleusercontent.com/d/1uK6T3G-Cs30H0yNbfYKaCWFvX24IXr6J",
+    description: ""
+  },
+  {
+    id: '4',
+    imageUrl: "https://lh3.googleusercontent.com/d/1L8be7SOvwMjOTMyOuawNPZSKsuEvwAQf",
+    description: ""
+  },
+  {
+    id: '5',
+    imageUrl: "https://lh3.googleusercontent.com/d/1Pk7dV51y8kwtI2rgEXp1cSJ2DJAYSTBv",
     description: ""
   }
 ];
@@ -57,7 +72,7 @@ export const AWARDS: Award[] = [
     organization: "",
     year: "",
     description: "",
-    imageUrl: "https://lh3.googleusercontent.com/d/1PJpScM9XEqcC7HeTXw0RSuAQPmeGC4kW"
+    imageUrl: "https://lh3.googleusercontent.com/d/1Yiyj8ziUOW4vzd9hukdv0wCE680rZRYI"
   },
   {
     id: '2',
@@ -65,7 +80,39 @@ export const AWARDS: Award[] = [
     organization: "",
     year: "",
     description: "",
-    imageUrl: "https://lh3.googleusercontent.com/d/1F8nKHhKr-r10z_hFg6Po5TVOpcvOTlsT"
+    imageUrl: "https://lh3.googleusercontent.com/d/1mxt1mDM2cXdltIbye7RGsE1V0RYBcP9E"
+  },
+  {
+    id: '3',
+    title: "",
+    organization: "",
+    year: "",
+    description: "",
+    imageUrl: "https://lh3.googleusercontent.com/d/1iGTUcoVfpa6a1rbJZwsMskjsGfqTkZwo"
+  },
+  {
+    id: '4',
+    title: "",
+    organization: "",
+    year: "",
+    description: "",
+    imageUrl: "https://lh3.googleusercontent.com/d/1yFbGikJCLyr-cVxBhKFkTM_SAlhQMlP1"
+  },
+  {
+    id: '5',
+    title: "",
+    organization: "",
+    year: "",
+    description: "",
+    imageUrl: "https://lh3.googleusercontent.com/d/1_F93i2kXR3MMII7ET9RTJs2tZZQXlRf2"
+  },
+  {
+    id: '6',
+    title: "",
+    organization: "",
+    year: "",
+    description: "",
+    imageUrl: "https://lh3.googleusercontent.com/d/11aPT5MINRhnd2BtDLcANPNtHr4dOzG2V"
   }
 ];
 
