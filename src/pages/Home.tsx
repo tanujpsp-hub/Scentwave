@@ -60,11 +60,11 @@ const Home = () => {
                   <img 
                     src={SITE_CONTENT.shirishLogoUrl} 
                     alt="SHIRISH Logo" 
-                    className="w-16 h-16 object-contain bg-white p-1 rounded-xl shadow-lg"
+                    className="w-16 h-16 object-contain mix-blend-screen mt-[7px]"
                     referrerPolicy="no-referrer"
                   />
                 )}
-                <h2 className="text-5xl font-extrabold tracking-tight text-white">{SITE_CONTENT.segmentsTitle}</h2>
+                <h2 className="text-5xl font-extrabold tracking-tight text-white mt-[6px]">{SITE_CONTENT.segmentsTitle}</h2>
               </div>
             </div>
             <div 

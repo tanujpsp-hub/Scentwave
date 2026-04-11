@@ -21,7 +21,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center gap-3 group">
               <img 
-                src="https://lh3.googleusercontent.com/d/1XA3xLFuDUVfYmrqM7xMjCw6jmn0pkNpj" 
+                src="https://lh3.googleusercontent.com/d/1fMXEUaEbV45n9LC2w7f6aH_b3T4tefZF" 
                 alt="Scentwave Logo" 
                 className="h-10 w-auto object-contain"
                 referrerPolicy="no-referrer"
