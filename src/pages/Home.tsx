@@ -41,7 +41,18 @@ const SEGMENTS: { id: SegmentType; name: string; icon: any; color: string; descr
 
 const Home = () => {
   const [selectedSegmentId, setSelectedSegmentId] = React.useState<SegmentType | null>(null);
+  const [scrollToImpact, setScrollToImpact] = React.useState(false);
   const selectedSegment = SEGMENTS.find(s => s.id === selectedSegmentId);
+  const impactRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (selectedSegmentId && scrollToImpact && impactRef.current) {
+      setTimeout(() => {
+        impactRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setScrollToImpact(false);
+      }, 300);
+    }
+  }, [selectedSegmentId, scrollToImpact]);
 
   return (
     <div>
@@ -71,6 +82,52 @@ const Home = () => {
               className="text-white/80 text-lg max-w-4xl mx-auto leading-relaxed rich-text-content text-justify"
               dangerouslySetInnerHTML={{ __html: SITE_CONTENT.segmentsSubtitle }}
             />
+
+            {/* Scrolling Upcoming Events Message */}
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-3xl mx-auto">
+              <div className="text-yellow-400 text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
+                Upcoming Events
+              </div>
+              
+              <motion.button 
+                onClick={() => {
+                  setSelectedSegmentId('health_management');
+                  setScrollToImpact(true);
+                }}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="flex-1 w-full sm:w-auto overflow-hidden bg-yellow-400 p-1.5 rounded-full shadow-lg shadow-brand-dark/10 border border-yellow-500/30 cursor-pointer group"
+              >
+                <div className="overflow-hidden relative">
+                  <motion.div
+                    initial={{ x: "0%" }}
+                    animate={{ x: "-50%" }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    className="whitespace-nowrap flex w-fit"
+                  >
+                    {(() => {
+                      const healthEvent = DEFAULT_EVENTS.find(e => e.segment === 'health_management');
+                      const message = healthEvent 
+                        ? `${healthEvent.title}: ${healthEvent.description} (${healthEvent.date})`
+                        : "Latest Activity";
+                      
+                      return [...Array(6)].map((_, i) => (
+                        <div key={i} className="flex items-center px-8">
+                          <span className="text-brand-dark font-bold text-xs uppercase tracking-wider group-hover:underline decoration-brand-dark/30 underline-offset-4">
+                            {message}
+                          </span>
+                          <div className="mx-6 h-1 w-1 rounded-full bg-brand-dark/20 flex-shrink-0" />
+                        </div>
+                      ));
+                    })()}
+                  </motion.div>
+                </div>
+              </motion.button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -186,7 +243,7 @@ const Home = () => {
                 </div>
 
                 {/* Events Section */}
-                <div>
+                <div ref={impactRef}>
                   <div className="flex items-center gap-4 mb-10">
                     <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-white">
                       <Newspaper size={24} />

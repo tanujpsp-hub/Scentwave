@@ -161,10 +161,10 @@ export const EVENTS: AppEvent[] = [
   },
   {
     id: '2',
-    title: "Rural Health Awareness Camp",
-    date: "2024-06-10",
-    description: "A free medical check-up and health awareness camp for rural communities, focusing on maternal and child health.",
-    location: "Village Community Center",
+    title: "BREAK THE SILENCE",
+    date: "25-04-2026",
+    description: "A Mental Health Awareness Program",
+    location: "Government Women Polytechnic College, Sanganer, Jaipur",
     segment: 'health_management'
   }
 ];
