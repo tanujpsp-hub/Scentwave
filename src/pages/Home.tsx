@@ -253,7 +253,7 @@ const Home = () => {
                   </div>
                   <div className="space-y-8">
                     {DEFAULT_EVENTS.filter(e => e.segment === selectedSegmentId).map(event => (
-                      <div key={event.id} className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-brand-secondary/30 hover:bg-white/10 hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row gap-8">
+                      <div key={event.id} className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-brand-secondary/30 hover:bg-white/10 hover:shadow-xl transition-all duration-300">
                         <div className="flex-1">
                           <h4 className="font-bold text-white text-2xl mb-4">{event.title}</h4>
                           <div 
@@ -271,6 +271,18 @@ const Home = () => {
                               <Calendar size={14} />
                               {event.date}
                             </div>
+                            {event.imageUrl && (
+                              <div className="mt-4 max-w-sm">
+                                <motion.img 
+                                  whileHover={{ scale: 1.02 }}
+                                  onClick={() => setZoomedImageUrl(event.imageUrl || null)}
+                                  src={event.imageUrl} 
+                                  alt={event.title}
+                                  className="w-full aspect-[3/4] object-cover rounded-2xl border border-white/10 shadow-2xl cursor-zoom-in"
+                                  referrerPolicy="no-referrer"
+                                />
+                              </div>
+                            )}
                             {event.link && (
                               <div className="mt-2">
                                 <a href={event.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-white font-bold hover:underline">
@@ -280,18 +292,6 @@ const Home = () => {
                             )}
                           </div>
                         </div>
-                        {event.imageUrl && (
-                          <div className="md:w-48 lg:w-64 flex-shrink-0">
-                            <motion.img 
-                              whileHover={{ scale: 1.05 }}
-                              onClick={() => setZoomedImageUrl(event.imageUrl || null)}
-                              src={event.imageUrl} 
-                              alt={event.title}
-                              className="w-full aspect-[3/4] object-cover rounded-2xl border border-white/10 shadow-2xl cursor-zoom-in"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                        )}
                       </div>
                     ))}
                     {DEFAULT_EVENTS.filter(e => e.segment === selectedSegmentId).length === 0 && (

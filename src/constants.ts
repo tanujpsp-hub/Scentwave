@@ -142,11 +142,11 @@ export const VENDORS: Vendor[] = [
   },
   {
     id: '2',
-    name: "Global Health Partners",
-    description: "Supplying essential medical equipment and pharmaceutical support for our mobile health clinics.",
+    name: "Narayana Hospital, Jaipur",
+    description: "A leading multispecialty hospital in Jaipur, providing world-class healthcare services and community health initiatives.",
     segment: 'health_management',
-    link: "https://example.com",
-    contact: "+91 09876 54321"
+    link: "https://www.narayanahealth.org/",
+    contact: "18003090309"
   }
 ];
 
