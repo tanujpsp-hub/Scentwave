@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Award, Briefcase, User, ChevronRight, X, MapPin, Calendar, Phone, Newspaper, ExternalLink, Shield } from 'lucide-react';
 import { SegmentType, AppEvent } from '../types';
 import { VENDORS as DEFAULT_VENDORS, EVENTS as DEFAULT_EVENTS, SITE_CONTENT } from '../constants';
@@ -42,6 +42,7 @@ const SEGMENTS: { id: SegmentType; name: string; icon: any; color: string; descr
 const Home = () => {
   const [selectedSegmentId, setSelectedSegmentId] = React.useState<SegmentType | null>(null);
   const [scrollToImpact, setScrollToImpact] = React.useState(false);
+  const [zoomedImageUrl, setZoomedImageUrl] = React.useState<string | null>(null);
   const selectedSegment = SEGMENTS.find(s => s.id === selectedSegmentId);
   const impactRef = React.useRef<HTMLDivElement>(null);
 
@@ -252,31 +253,45 @@ const Home = () => {
                   </div>
                   <div className="space-y-8">
                     {DEFAULT_EVENTS.filter(e => e.segment === selectedSegmentId).map(event => (
-                      <div key={event.id} className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-brand-secondary/30 hover:bg-white/10 hover:shadow-xl transition-all duration-300">
-                        <div className="flex justify-between items-start mb-4 gap-4">
-                          <h4 className="font-bold text-white text-xl">{event.title}</h4>
-                          <div className="flex-shrink-0 flex items-center gap-2 text-xs font-extrabold text-white bg-white/10 px-3 py-1.5 rounded-full">
-                            <Calendar size={14} />
-                            {event.date}
+                      <div key={event.id} className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-brand-secondary/30 hover:bg-white/10 hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row gap-8">
+                        <div className="flex-1">
+                          <h4 className="font-bold text-white text-2xl mb-4">{event.title}</h4>
+                          <div 
+                            className="text-white/70 mb-6 leading-relaxed rich-text-content"
+                            dangerouslySetInnerHTML={{ __html: event.description }}
+                          />
+                          <div className="flex flex-col gap-3">
+                            {event.location && (
+                              <div className="flex items-center gap-2 text-sm text-white/60 font-semibold">
+                                <MapPin size={16} className="text-white" />
+                                {event.location}
+                              </div>
+                            )}
+                            <div className="flex items-center gap-2 text-xs font-extrabold text-white/50 bg-white/5 px-3 py-1.5 rounded-full w-fit">
+                              <Calendar size={14} />
+                              {event.date}
+                            </div>
+                            {event.link && (
+                              <div className="mt-2">
+                                <a href={event.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-white font-bold hover:underline">
+                                  Activity Details <ExternalLink size={14} />
+                                </a>
+                              </div>
+                            )}
                           </div>
                         </div>
-                        <div 
-                          className="text-white/70 mb-6 leading-relaxed rich-text-content"
-                          dangerouslySetInnerHTML={{ __html: event.description }}
-                        />
-                        <div className="flex flex-wrap gap-6">
-                          {event.location && (
-                            <div className="flex items-center gap-2 text-sm text-white/60 font-semibold">
-                              <MapPin size={16} className="text-white" />
-                              {event.location}
-                            </div>
-                          )}
-                          {event.link && (
-                            <a href={event.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-white font-bold hover:underline">
-                              Activity Details <ExternalLink size={14} />
-                            </a>
-                          )}
-                        </div>
+                        {event.imageUrl && (
+                          <div className="md:w-48 lg:w-64 flex-shrink-0">
+                            <motion.img 
+                              whileHover={{ scale: 1.05 }}
+                              onClick={() => setZoomedImageUrl(event.imageUrl || null)}
+                              src={event.imageUrl} 
+                              alt={event.title}
+                              className="w-full aspect-[3/4] object-cover rounded-2xl border border-white/10 shadow-2xl cursor-zoom-in"
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                        )}
                       </div>
                     ))}
                     {DEFAULT_EVENTS.filter(e => e.segment === selectedSegmentId).length === 0 && (
@@ -320,6 +335,38 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Zoom Lightbox */}
+      <AnimatePresence>
+        {zoomedImageUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoomedImageUrl(null)}
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <motion.button
+              whileHover={{ scale: 1.1, rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+              className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
+              onClick={() => setZoomedImageUrl(null)}
+            >
+              <X size={40} />
+            </motion.button>
+            <motion.img
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              src={zoomedImageUrl}
+              alt="Zoomed Poster"
+              className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+              referrerPolicy="no-referrer"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

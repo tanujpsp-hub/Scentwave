@@ -165,6 +165,7 @@ export const EVENTS: AppEvent[] = [
     date: "25-04-2026",
     description: "A Mental Health Awareness Program",
     location: "Government Women Polytechnic College, Sanganer, Jaipur",
+    imageUrl: "https://lh3.googleusercontent.com/d/1ce0i4jkFSYA9fy2GQWNpjzhMvupyNyga",
     segment: 'health_management'
   }
 ];
