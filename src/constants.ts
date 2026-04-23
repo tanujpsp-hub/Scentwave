@@ -34,7 +34,7 @@ export const SITE_CONTENT: SiteContent = {
   // Contact Section
   contactTitle: "Join Our Mission",
   contactSubtitle: "Whether you're looking to volunteer, partner with us, or simply want to learn more about our initiatives, we'd love to hear from you.",
-  shirishLogoUrl: "https://lh3.googleusercontent.com/d/1X-YH7hcgT80DYE76GXmIqA4iLot5gfkU"
+  shirishLogoUrl: "https://lh3.googleusercontent.com/d/1swKO94S_Lj1xsjdhFYh2PDDhuBQVjv8v"
 };
 
 export const MEDIA_COVERAGE: MediaCoverage[] = [
@@ -147,6 +147,13 @@ export const VENDORS: Vendor[] = [
     segment: 'health_management',
     link: "https://www.narayanahealth.org/",
     contact: "18003090309"
+  },
+  {
+    id: '3',
+    name: "Pots n Petals",
+    description: "By Suneeti Goyal",
+    segment: 'environmental_activities',
+    contact: "98290 12614"
   }
 ];
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Award, Briefcase, User, ChevronRight, X, MapPin, Calendar, Phone, Newspaper, ExternalLink, Shield } from 'lucide-react';
+import { Award, Briefcase, User, ChevronRight, X, MapPin, Calendar, Phone, Newspaper, ExternalLink, Shield, Mail } from 'lucide-react';
 import { SegmentType, AppEvent } from '../types';
 import { VENDORS as DEFAULT_VENDORS, EVENTS as DEFAULT_EVENTS, SITE_CONTENT } from '../constants';
 
@@ -224,7 +224,7 @@ const Home = () => {
                           {vendor.contact && (
                             <div className="flex items-center gap-2 text-sm text-white/60 font-semibold">
                               <Phone size={16} className="text-white" />
-                              {vendor.contact}
+                              Contact: {vendor.contact}
                             </div>
                           )}
                           {vendor.link && (
@@ -317,18 +317,41 @@ const Home = () => {
             <h2 className="text-5xl font-extrabold tracking-tight text-white">{SITE_CONTENT.contactTitle}</h2>
           </div>
 
-          <div className="max-w-2xl mx-auto bg-white/5 backdrop-blur-md rounded-[2rem] p-6 md:p-8 border border-white/10 hover:border-brand-secondary/50 hover:bg-white/10 transition-all duration-500 shadow-2xl shadow-brand-dark/20">
-            <div className="relative z-10 text-center">
-              <div 
-                className="text-white/70 text-lg mb-6 leading-relaxed rich-text-content text-justify"
-                dangerouslySetInnerHTML={{ __html: SITE_CONTENT.contactSubtitle }}
-              />
-              <div className="text-white/90 text-base font-medium space-y-3">
-                <div className="flex items-center justify-center gap-3">
-                  <p>Email: {SITE_CONTENT.contactEmail}</p>
+          <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-md rounded-[2.5rem] p-6 md:py-8 md:px-12 border border-white/10 hover:border-brand-secondary/50 hover:bg-white/10 transition-all duration-500 shadow-2xl shadow-brand-dark/20">
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-12">
+              <div className="flex-1 text-left">
+                <div 
+                  className="text-white/70 text-lg mb-4 leading-relaxed rich-text-content text-justify"
+                  dangerouslySetInnerHTML={{ __html: SITE_CONTENT.contactSubtitle }}
+                />
+                <div className="text-white/90 text-base font-medium space-y-3">
+                  <div className="flex items-center justify-start gap-4 group">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-secondary/20 transition-colors">
+                      <Mail size={18} className="text-brand-secondary" />
+                    </div>
+                    <p>Email: {SITE_CONTENT.contactEmail}</p>
+                  </div>
+                  <div className="flex items-center justify-start gap-4 group">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-secondary/20 transition-colors">
+                      <Phone size={18} className="text-brand-secondary" />
+                    </div>
+                    <p>Mobile: {SITE_CONTENT.contactPhone}</p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center gap-3">
-                  <p>Mobile: {SITE_CONTENT.contactPhone}</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 relative group mb-4">
+                  <div className="absolute inset-0 bg-brand-secondary/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <img 
+                    src={SITE_CONTENT.shirishLogoUrl} 
+                    alt="Organization Logo"
+                    className="w-full h-full object-contain relative z-10 drop-shadow-[0_10px_30px_rgba(0,0,0,0.3)] transition-transform duration-700 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="text-center">
+                  <p className="text-white font-bold text-lg mb-0.5">Mrs Shiwali Gupta</p>
+                  <p className="text-white/60 text-xs font-bold uppercase tracking-widest leading-none">Founder and Director</p>
                 </div>
               </div>
             </div>
