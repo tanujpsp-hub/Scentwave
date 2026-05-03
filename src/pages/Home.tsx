@@ -66,18 +66,16 @@ const Home = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
-            <div className="flex flex-col items-center justify-center mb-6">
-              <div className="flex items-center gap-4">
-                {SITE_CONTENT.shirishLogoUrl && (
-                  <img 
-                    src={SITE_CONTENT.shirishLogoUrl} 
-                    alt="SHIRISH Logo" 
-                    className="w-16 h-16 object-contain mix-blend-screen mt-[7px]"
-                    referrerPolicy="no-referrer"
-                  />
-                )}
-                <h2 className="text-5xl font-extrabold tracking-tight text-white mt-[6px]">{SITE_CONTENT.segmentsTitle}</h2>
-              </div>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              {SITE_CONTENT.shirishLogoUrl && (
+                <img 
+                  src={SITE_CONTENT.shirishLogoUrl} 
+                  alt="SHIRISH Logo" 
+                  className="w-10 h-10 md:w-14 md:h-14 object-contain mix-blend-screen ml-[3px] pt-[4px]"
+                  referrerPolicy="no-referrer"
+                />
+              )}
+              <h2 className="text-5xl font-extrabold tracking-tight text-white pr-[17px]">{SITE_CONTENT.segmentsTitle}</h2>
             </div>
             <div 
               className="text-white/80 text-lg max-w-4xl mx-auto leading-relaxed rich-text-content text-justify"
@@ -87,7 +85,7 @@ const Home = () => {
             {/* Scrolling Upcoming Events Message */}
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-3xl mx-auto">
               <div className="text-yellow-400 text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
-                Upcoming Events
+                RECENT EVENT COMPLETED
               </div>
               
               <motion.button 
@@ -339,20 +337,15 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 relative group mb-4">
-                  <div className="absolute inset-0 bg-brand-secondary/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                  <img 
-                    src={SITE_CONTENT.shirishLogoUrl} 
-                    alt="Organization Logo"
-                    className="w-full h-full object-contain relative z-10 drop-shadow-[0_10px_30px_rgba(0,0,0,0.3)] transition-transform duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="text-center">
-                  <p className="text-white font-bold text-lg mb-0.5">Mrs Shiwali Gupta</p>
-                  <p className="text-white/60 text-xs font-bold uppercase tracking-widest leading-none">Founder and Director</p>
-                </div>
+              <div className="flex flex-col items-center shrink-0">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1swKO94S_Lj1xsjdhFYh2PDDhuBQVjv8v" 
+                  alt="Contact Profile"
+                  className="w-32 h-32 md:w-40 md:h-40 object-contain mix-blend-screen"
+                  referrerPolicy="no-referrer"
+                />
+                <p className="text-white mt-[7px] font-medium text-sm md:text-base">Mrs Shiwali Gupta</p>
+                <p className="text-white/60 text-xs md:text-sm">Founder & Director</p>
               </div>
             </div>
           </div>

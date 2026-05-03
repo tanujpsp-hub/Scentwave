@@ -34,7 +34,7 @@ export const SITE_CONTENT: SiteContent = {
   // Contact Section
   contactTitle: "Join Our Mission",
   contactSubtitle: "Whether you're looking to volunteer, partner with us, or simply want to learn more about our initiatives, we'd love to hear from you.",
-  shirishLogoUrl: "https://lh3.googleusercontent.com/d/1swKO94S_Lj1xsjdhFYh2PDDhuBQVjv8v"
+  shirishLogoUrl: "https://lh3.googleusercontent.com/d/1zRipA3MgO9PsOjaTGy4Y8fKC6voIZYl6"
 };
 
 export const MEDIA_COVERAGE: MediaCoverage[] = [
