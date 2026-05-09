@@ -85,7 +85,7 @@ const Home = () => {
             {/* Scrolling Upcoming Events Message */}
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-3xl mx-auto">
               <div className="text-yellow-400 text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
-                RECENT EVENT COMPLETED
+                RECENT EVENT
               </div>
               
               <motion.button 
@@ -111,7 +111,7 @@ const Home = () => {
                     {(() => {
                       const healthEvent = DEFAULT_EVENTS.find(e => e.segment === 'health_management');
                       const message = healthEvent 
-                        ? `${healthEvent.title}: ${healthEvent.description} (${healthEvent.date})`
+                        ? `${healthEvent.title}${healthEvent.description ? `: ${healthEvent.description}` : ''} (${healthEvent.date})`
                         : "Latest Activity";
                       
                       return [...Array(6)].map((_, i) => (

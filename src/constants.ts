@@ -159,20 +159,29 @@ export const VENDORS: Vendor[] = [
 
 export const EVENTS: AppEvent[] = [
   {
+    id: '3',
+    title: "HPV VACCINATION AWARENESS PROGRAM",
+    date: "09-05-26",
+    description: "",
+    location: "Government Women Polytechnic College, Sanganer, Jaipur",
+    imageUrl: "https://lh3.googleusercontent.com/d/1neXuFvgISj5Z0xDNI_5sxFgzRWs3U8nb",
+    segment: 'health_management'
+  },
+  {
+    id: '2',
+    title: "Break The Silence - Mental Health Awareness Program",
+    date: "25-04-26",
+    description: "",
+    location: "Government Women Polytechnic College, Sanganer, Jaipur",
+    imageUrl: "https://lh3.googleusercontent.com/d/1ce0i4jkFSYA9fy2GQWNpjzhMvupyNyga",
+    segment: 'health_management'
+  },
+  {
     id: '1',
     title: "Community Clean-up Drive",
     date: "2024-05-15",
     description: "A massive community-led clean-up event in the heart of the city, focusing on plastic waste reduction.",
     location: "City Central Park",
     segment: 'waste_management'
-  },
-  {
-    id: '2',
-    title: "BREAK THE SILENCE",
-    date: "25-04-2026",
-    description: "A Mental Health Awareness Program",
-    location: "Government Women Polytechnic College, Sanganer, Jaipur",
-    imageUrl: "https://lh3.googleusercontent.com/d/1ce0i4jkFSYA9fy2GQWNpjzhMvupyNyga",
-    segment: 'health_management'
   }
 ];
