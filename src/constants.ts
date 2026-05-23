@@ -159,6 +159,15 @@ export const VENDORS: Vendor[] = [
 
 export const EVENTS: AppEvent[] = [
   {
+    id: '4',
+    title: "Father's Day Celebration",
+    date: "14-06-2026",
+    description: "",
+    location: "Hotel Bellacasa Jaipur",
+    imageUrl: "https://lh3.googleusercontent.com/d/1MsTVpWBgz9xNX8BblEvZV1PbOdHsHM97",
+    segment: 'health_management'
+  },
+  {
     id: '3',
     title: "HPV VACCINATION AWARENESS PROGRAM",
     date: "09-05-26",
