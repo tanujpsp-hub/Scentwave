@@ -41,6 +41,7 @@ export interface AppEvent {
   location?: string;
   link?: string;
   imageUrl?: string;
+  imageUrls?: string[];
   segment: SegmentType;
 }
 

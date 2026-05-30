@@ -269,18 +269,30 @@ const Home = () => {
                               <Calendar size={14} />
                               {event.date}
                             </div>
-                            {event.imageUrl && (
-                              <div className="mt-4 max-w-sm">
-                                <motion.img 
-                                  whileHover={{ scale: 1.02 }}
-                                  onClick={() => setZoomedImageUrl(event.imageUrl || null)}
-                                  src={event.imageUrl} 
-                                  alt={event.title}
-                                  className="w-full aspect-[3/4] object-cover rounded-2xl border border-white/10 shadow-2xl cursor-zoom-in"
-                                  referrerPolicy="no-referrer"
-                                />
-                              </div>
-                            )}
+                            {(() => {
+                              const images = event.imageUrls && event.imageUrls.length > 0
+                                ? event.imageUrls
+                                : (event.imageUrl ? [event.imageUrl] : []);
+                              
+                              if (images.length === 0) return null;
+
+                              return (
+                                <div className="mt-4 flex flex-wrap gap-4">
+                                  {images.map((url, idx) => (
+                                    <div key={idx} className="w-full sm:w-[240px] max-w-sm">
+                                      <motion.img 
+                                        whileHover={{ scale: 1.02 }}
+                                        onClick={() => setZoomedImageUrl(url)}
+                                        src={url} 
+                                        alt={`${event.title} - Image ${idx + 1}`}
+                                        className="w-full aspect-[3/4] object-cover rounded-2xl border border-white/10 shadow-2xl cursor-zoom-in"
+                                        referrerPolicy="no-referrer"
+                                      />
+                                    </div>
+                                  ))}
+                                </div>
+                              );
+                            })()}
                             {event.link && (
                               <div className="mt-2">
                                 <a href={event.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm text-white font-bold hover:underline">
